@@ -70,7 +70,7 @@ This is done by internally converting terms into [de Bruijn index](https://en.wi
 Metavariables also implement α-conversion:
 
 ```
-λ$ \x.:om
+λ$ \x.(:om)
 λ> (λx x'.(x' x'))
 ≡  (λx.:om)
 ```
