@@ -108,8 +108,8 @@ True = (λx y.x)
 False = (λx y.y)
 Mult = (λx y z.(x (y z)))
 Pred = (λn f x.(((n (λg h.(h (g f)))) (λu.x)) (λu.u)))
-IfIsZero = (λn.((n (λz x y.y)) (λx y.x)))
 Y = (λf.((λx.(f (x x))) (λx.(f (x x)))))
+IfIsZero = (λn.n (True False) True)
 FACT = (λf x. IfIsZero (x) (1) ( Mult (x) (f (Pred x)) ))
 ```
 
