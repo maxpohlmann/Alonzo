@@ -67,6 +67,14 @@ Metavariables are also re-replaced into terms as a last step when reducing terms
 
 This is done by internally converting terms into [de Bruijn index](https://en.wikipedia.org/wiki/De_Bruijn_index) representations and comparing sub-terms to the current set of metavariables.
 
+Metavariables also implement α-conversion:
+
+```
+λ$ \x.:om
+λ> (λx x'.(x' x'))
+≡  (λx.:om)
+```
+
 ### [Church Encodings](https://en.wikipedia.org/wiki/Church_encoding)
 
 Natural Numbers are treated as special metavariables and are internally represented by Church numerals:
@@ -117,6 +125,8 @@ FACT = (λf x. IfIsZero (x) (1) ( Mult (x) (f (Pred x)) ))
 On my machine, this takes 5 seconds. It takes a little longer without the `;`, but it looks interesting to watch the computation. :D
 
 `Y FACT 5` exceeds the hard limit for the number of β-steps, but even without limits, it took longer than I wanted to wait. It should be no surprise that this implementation isn't exactly efficient, but it does work in principle.
+
+
 
 ## Installation and usage
 
