@@ -1,6 +1,6 @@
 # Aλonzo
 
-Welcome to Aλonzo (an homage to [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church)), a CLI implementation the untyped [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one.
+Welcome to Aλonzo ([Alonzo](https://en.wikipedia.org/wiki/Alonzo_Church)), a CLI implementation of the untyped [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one.
 
 ### The Syntax
 
@@ -124,7 +124,7 @@ See https://elixir-lang.org/install.html for how to install Elixir. To execute t
 
 I also recommend installing `rlwrap`: have you ever wanted to use the arrow keys in a CLI and only got `^[[D` etc.? `rlwrap` fixes that. Simply run `sudo apt-get install rlwrap`.
 
-Then either clone this repository, or just download the `alonzo` file in the root directory. You will probably need to `chmod +x alonzo`.
+Then either clone this repository, or just download the `alonzo` file in the root directory (and optionally some `metavars.txt`). You will probably need to `chmod +x alonzo`.
 
 Then simply type `rlwrap ./alonzo` and you're good to go. You can also specify a file containing the metavariable declarations (defaults to `metavars.txt`), i.e. `rlwrap ./alonzo metavars_arith.txt`. `Ctrl`+`D` will always save to `metavars.txt`, though!
 
