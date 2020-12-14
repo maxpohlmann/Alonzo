@@ -41,7 +41,7 @@ Here's an example:
 β> (λy'.(y y'))
 ```
 
-Note on the CLI: `λ$` precede input prompts, `λ>` the fully-parenthesised version of the given term, and `α>` and `β>` precede the results of α-conversion and β-reduction steps, respectively.
+Note on the CLI lines: `λ$` precedes input prompts, `λ>` the fully-parenthesised version of the given term, and `α>` and `β>` precede the results of α-conversion and β-reduction steps, respectively.
 
 ### Metavariables
 
@@ -65,9 +65,9 @@ Metavariables are also re-replaced into terms as a last step when reducing terms
 ≡  (a :om)
 ```
 
-This is done by internally converting terms into _de Bruijn index_ representations and comparing sub-terms to the current set of metavariables.
+This is done by internally converting terms into [de Bruijn index](https://en.wikipedia.org/wiki/De_Bruijn_index) representations and comparing sub-terms to the current set of metavariables.
 
-### Church Encodings
+### [Church Encodings](https://en.wikipedia.org/wiki/Church_encoding)
 
 Natural Numbers are treated as special metavariables and are internally represented by Church numerals:
 
@@ -77,7 +77,7 @@ Natural Numbers are treated as special metavariables and are internally represen
 ≡  3
 ```
 
-There are also Church encodings of basic arithmetic operators:
+There are also Church encodings of basic arithmetic operators, e.g.:
 
 ```
 λ$ ! Mult = \x y z.(x (y z))
@@ -120,6 +120,8 @@ On my machine, this takes 5 seconds. It takes a little longer without the `;`, b
 
 ## Installation and usage
 
+(Only tested on Linux Ubuntu)
+
 See https://elixir-lang.org/install.html for how to install Elixir. To execute the CLI, you really only need `esl-erlang`, but I do recommend checking out Elixir; it's an awesome language!
 
 I also recommend installing `rlwrap`: have you ever wanted to use the arrow keys in a CLI and only got `^[[D` etc.? `rlwrap` fixes that. Simply run `sudo apt-get install rlwrap`.
@@ -128,6 +130,6 @@ Then either clone this repository, or just download the `alonzo` file in the roo
 
 Then simply type `rlwrap ./alonzo` and you're good to go. You can also specify a file containing the metavariable declarations (defaults to `metavars.txt`), i.e. `rlwrap ./alonzo metavars_arith.txt`. `Ctrl`+`D` will always save to `metavars.txt`, though!
 
-Code quality disclaimer: My code is currently undocumented and, while not a complete mess, not really nice to look at. I might change that at some point, but for now, open it at your own risk.
+Code quality disclaimer: My code is currently undocumented and, while not a complete mess, not really nice to look at. I might refactor and document it at some point, but for now, look at it at your own risk.
 
 If you want to make changes anyway, you can compile the program by running `mix escript.build`.
