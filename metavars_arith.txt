@@ -1,0 +1,4 @@
+Exp=(λx y.(y x))
+Mult=(λx y z.(x (y z)))
+Plus=(λx y p q.((x p) ((y p) q)))
+Pred=(λn f x.(((n (λg h.(h (g f)))) (λu.x)) (λu.u)))
