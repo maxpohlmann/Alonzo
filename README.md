@@ -1,6 +1,6 @@
 # Aλonzo
 
-Welcome to Aλonzo ([Alonzo](https://en.wikipedia.org/wiki/Alonzo_Church)), an implementation of the untyped [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/), in the form of a [CLI](https://en.wikipedia.org/wiki/Command-line_interface). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one.
+Welcome to Aλonzo ([Alonzo](https://en.wikipedia.org/wiki/Alonzo_Church)), an interpreter for the untyped [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/), in the form of a [CLI](https://en.wikipedia.org/wiki/Command-line_interface). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one.
 
 ### The Syntax
 
