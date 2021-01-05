@@ -28,7 +28,7 @@ After typing a term, β-reduction steps are performed by contracting the left-mo
 
 - a β-normal form is found, i.e. the term has no redex
 - the term reduces to itself, e.g. for `(λx.x x)(λx.x x)`
-- 5000 beta-steps, or if the left-most redex is nested under 1000 applications and/or abstractions, as hard limits, since β-reduction does not necessarily terminate
+- 5000 β-steps, or if the left-most redex is nested under 1000 applications and/or abstractions, as hard limits, since β-reduction does not necessarily terminate
 
 Before contracting a redex, α-conversion is performed on this redex (only), if necessary, as this suffices to avoid the capture of variables. This is done by appending apostrophes `'` to bound variables.
 
