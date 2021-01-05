@@ -17,10 +17,10 @@ First, here's a list of valid terms, so you can get an idea:
 
 More generally:
 
-- **Variables**: start with a lowercase Latin letter, followed by arbitrary sequences of (any-case) Latin letters, numbers, apostrophes `'`, and underscores `_`
-- **Parentheses**: may surround any sub-term, but are not required unless they are "logically required", e.g. for `x (y z)` or `(λx.x)y`
-- **Spaces**: separate two variables, but are not required and simply ignored in all other cases
-- **Lambdas**: can be typed as `λ`, `\`, or `&`, whatever is most convenient
+- **Variables** start with a lowercase Latin letter, followed by arbitrary sequences of (any-case) Latin letters, numbers, apostrophes `'`, and underscores `_`
+- **Parentheses** may surround any sub-term, but are not required unless they are "logically required", e.g. for `x (y z)` or `(λx.x)y`
+- **Spaces** separate two variables, but are not required and simply ignored in all other cases
+- **Lambdas** can be typed as `λ`, `\`, or `&`, whatever is most convenient
 
 ### β-Reduction and α-conversion
 
