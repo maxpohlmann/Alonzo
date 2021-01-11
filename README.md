@@ -228,3 +228,7 @@ If you want to make changes anyway, you can compile the program by running `mix 
 ```
 
 [Factorial(2)](./factorial_2.txt)
+
+[Factorial(3)](./factorial_3.txt)
+
+[Factorial(4)](./factorial_4.txt)
