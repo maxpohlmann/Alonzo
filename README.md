@@ -130,7 +130,7 @@ On my machine, this takes 5 seconds. It takes a little longer without the `;`, b
 
 ## Simply typed lambda calculus (type inference à la Curry)
 
-Begin a line with `?` to determine the most general type (more precisely, the principal pair) of the term. Right now, all types variables are wildly numbered αs, but I'd like to make that look nicer at some point. Some examples (for predefined metavariables):
+Begin a line with `?` to determine the most general type (more precisely, the principal pair) of the term. Right now, all type variables are wildly numbered αs, but I'd like to make that look nicer at some point. Some examples (for predefined metavariables):
 
 ```
 λ$ ? S
