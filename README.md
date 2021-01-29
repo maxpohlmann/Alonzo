@@ -130,23 +130,23 @@ On my machine, this takes 5 seconds. It takes a little longer without the `;`, b
 
 ## Simply typed lambda calculus (type inference à la Curry)
 
-Begin a line with `?` to determine the most general type (more precisely, the principal pair) of the term. Right now, all type variables are wildly numbered αs, but I'd like to make that look nicer at some point. Some examples (for predefined metavariables):
+Begin a line with `?` to determine the most general type (more precisely, the principal pair) of the term. Some examples (for predefined metavariables):
 
 ```
 λ$ ? S
-λ>  ⊢ (λx y z.((x z) (y z))) : ((α5 → (α7 → α6)) → ((α5 → α7) → (α5 → α6)))
+λ>  ⊢ (λx y z.((x z) (y z))) : ((α → (β → γ)) → ((α → β) → (α → γ)))
 λ$ ? K
-λ>  ⊢ (λx y.x) : (α1 → (α3 → α1))
+λ>  ⊢ (λx y.x) : (α → (β → α))
 λ$ ? I
-λ>  ⊢ (λx.x) : (α1 → α1)
+λ>  ⊢ (λx.x) : (α → α)
 λ$ ? S K
-λ>  ⊢ ((λx y z.((x z) (y z))) (λx y.x)) : ((α6 → α8) → (α6 → α6))
+λ>  ⊢ ((λx y z.((x z) (y z))) (λx y.x)) : ((α → β) → (α → α))
 λ$ ? K I
-λ>  ⊢ ((λx y.x) (λx.x)) : (α4 → (α6 → α6))
+λ>  ⊢ ((λx y.x) (λx.x)) : (α → (β → β))
 λ$ ? Y
 λ>  ⊢ (λf.((λx.(f (x x))) (λx.(f (x x))))) : untypable
 λ$ ? I a
-λ> a:α1 ⊢ ((λx.x) a) : α1
+λ> a:α ⊢ ((λx.x) a) : α
 ```
 
 

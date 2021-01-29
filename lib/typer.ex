@@ -1,8 +1,8 @@
 defmodule Typer do
   import Utils
 
-  def free_vars({:tvar, tvar}), do: [tvar]
-  def free_vars({:func, l, r}), do: free_vars(l) ++ free_vars(r)
+  def free_tvars({:tvar, tvar}), do: [tvar]
+  def free_tvars({:func, l, r}), do: free_tvars(l) ++ free_tvars(r)
 
   def sub_in_type(alpha={:tvar, tvar}, sub), do: Map.get(sub, tvar) || alpha
   def sub_in_type({:func, l, r}, sub), do: {:func, sub_in_type(l, sub), sub_in_type(r, sub)}
@@ -16,7 +16,7 @@ defmodule Typer do
 
   def unify_types({:tvar, tvar}, tau) do
     cond do
-      not Enum.member?(free_vars(tau), tvar) ->
+      not Enum.member?(free_tvars(tau), tvar) ->
         %{tvar => tau}
       tvar == tau ->
         %{}
@@ -78,19 +78,41 @@ defmodule Typer do
     eqset = eqset_E(basis, term, {:tvar, 0}, fresh)
     u = unify_equations(eqset)
     if u != :fail do
-      # TODO sub basis
       basis = basis
         |> Enum.map(fn {var, t} -> {var, sub_in_type(t, u)} end)
         |> Map.new
-      final_type = Map.get(u, 0)
+      final_type = sub_in_type({:tvar, 0}, u)
       {basis, final_type}
     else
       {%{}, :fail}
     end
   end
 
+  def pretty_tvars(_basis, :fail), do: {%{}, :fail}
+  def pretty_tvars(basis, type) do
+    tvars = basis
+      |> Map.values
+      |> Enum.map(&free_tvars/1)
+      |> (&([free_tvars(type)] ++ &1)).()
+      |> List.flatten
+      |> Enum.uniq
+    pretty = ["α", "β", "γ", "δ", "ϵ", "ζ", "η"]
+    map = tvars
+      |> Enum.with_index
+      |> Enum.map(fn {tvar, i} -> {tvar, {:tvar, (if length(tvars) <= length(pretty), do: Enum.at(pretty, i), else: "α#{i}")}} end)
+      |> Map.new
+
+    basis = basis
+      |> Enum.map(fn {var, t} -> {var, sub_in_type(t, map)} end)
+      |> Map.new
+
+    type = sub_in_type(type, map)
+
+    {basis, type}
+  end
+
   def show_type({:func, sigma, tau}), do: "(#{show_type(sigma)} → #{show_type(tau)})"
-  def show_type({:tvar, tvar}), do: "α#{tvar}"
+  def show_type({:tvar, tvar}), do: "#{tvar}"
   def show_type(:fail), do: "untypable"
 
   def show_basis(basis) do

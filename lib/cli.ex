@@ -83,6 +83,7 @@ defmodule CLI do
     term = parse(inp, metavars)
 
     {basis, type} = pp(term)
+    {basis, type} = pretty_tvars(basis, type)
 
     outp = show(term)
     IO.puts("λ> #{show_basis(basis)} ⊢ #{outp} : #{show_type(type)}")
