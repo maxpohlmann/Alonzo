@@ -2,6 +2,7 @@ defmodule CLI do
   import Parser
   import Utils
   import Reducer
+  import Typer
 
   def main(args) do
     metavar_file = if args == [], do: "metavars.txt", else: Enum.at(args, 0)
@@ -33,6 +34,8 @@ defmodule CLI do
           cond do
             String.starts_with?(inp, "!") ->
               handle_mv_decl(inp, metavars, metavars_db)
+            String.starts_with?(inp, "?") ->
+              handle_typing_input(inp |> String.split_at(1) |> elem(1), metavars, metavars_db)
             String.starts_with?(inp, ";") ->
               handle_normal_input(inp |> String.split_at(1) |> elem(1), metavars, metavars_db, true)
             true ->
@@ -73,6 +76,18 @@ defmodule CLI do
     else
       {metavars, metavars_db}
     end
+  end
+
+
+  def handle_typing_input(inp, metavars, metavars_db) do
+    term = parse(inp, metavars)
+
+    {basis, type} = pp(term)
+
+    outp = show(term)
+    IO.puts("λ> #{show_basis(basis)} ⊢ #{outp} : #{show_type(type)}")
+
+    {metavars, metavars_db}
   end
 
 

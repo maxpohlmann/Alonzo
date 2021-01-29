@@ -1,6 +1,6 @@
 # Aλonzo
 
-Welcome to Aλonzo ([Alonzo](https://en.wikipedia.org/wiki/Alonzo_Church)), an interpreter for the untyped [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/), in the form of a [CLI](https://en.wikipedia.org/wiki/Command-line_interface). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one.
+Welcome to Aλonzo ([Alonzo](https://en.wikipedia.org/wiki/Alonzo_Church)), an interpreter for the untyped (and now also simply typed) [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/), in the form of a [CLI](https://en.wikipedia.org/wiki/Command-line_interface). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one.
 
 ### The Syntax
 
@@ -125,6 +125,29 @@ FACT = (λf x. IfIsZero (x) (1) ( Mult (x) (f (Pred x)) ))
 On my machine, this takes 5 seconds. It takes a little longer without the `;`, but it looks interesting to watch the computation (see below). :D
 
 `Y FACT 5` exceeds the hard limit for the number of β-steps, but even without limits, it took longer than I wanted to wait. It should be no surprise that this implementation isn't exactly efficient, but it does work in principle.
+
+
+
+## Simply typed lambda calculus (type inference à la Curry)
+
+Begin a line with `?` to determine the most general type (more precisely, the principal pair) of the term. Right now, all types variables are wildly numbered αs, but I'd like to make that look nicer at some point. Some examples (for predefined metavariables):
+
+```
+λ$ ? S
+λ>  ⊢ (λx y z.((x z) (y z))) : ((α5 → (α7 → α6)) → ((α5 → α7) → (α5 → α6)))
+λ$ ? K
+λ>  ⊢ (λx y.x) : (α1 → (α3 → α1))
+λ$ ? I
+λ>  ⊢ (λx.x) : (α1 → α1)
+λ$ ? S K
+λ>  ⊢ ((λx y z.((x z) (y z))) (λx y.x)) : ((α6 → α8) → (α6 → α6))
+λ$ ? K I
+λ>  ⊢ ((λx y.x) (λx.x)) : (α4 → (α6 → α6))
+λ$ ? Y
+λ>  ⊢ (λf.((λx.(f (x x))) (λx.(f (x x))))) : untypable
+λ$ ? I a
+λ> a:α1 ⊢ ((λx.x) a) : α1
+```
 
 
 

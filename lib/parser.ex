@@ -2,7 +2,7 @@ defmodule Parser do
   import Utils
   import Reducer
 
-  def parse(inp, metavars) do
+  def parse(inp, metavars \\ %{}) do
     {term, inp} = parse_term(to_charlist(inp))
 
     if length(inp) != 0, do: raise "closing parenthesis without opening: #{inp}"
