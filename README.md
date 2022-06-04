@@ -2,6 +2,9 @@
 
 Welcome to Aλonzo ([Alonzo](https://en.wikipedia.org/wiki/Alonzo_Church)), an interpreter for the (untyped) [λ-calculus](https://en.wikipedia.org/wiki/Lambda_calculus) implemented in [Elixir](https://elixir-lang.org/), in the form of a [CLI](https://en.wikipedia.org/wiki/Command-line_interface). It allows you to input arbitrary λ-terms and then finds its β-normal form, if the term has one. It can also infer types ([simply typed](https://en.wikipedia.org/wiki/Simply_typed_lambda_calculus), Curry-style) of terms, if the term is typable.
 
+This project was done independently while following the course _Lambda Calculus and Type Systems_ by [Uwe Nestmann](https://www.mtv.tu-berlin.de/nestmann). The course, and in turn this project, is based on, and many of the algorithms taken from: Henk P Barendregt. Lambda calculi with types. In S. Abramsky, D.M. Gabbai, and T.S.E. Maibaum, editors, Handbook of logic in computer science (vol. 2), pages 117–309. Oxford University Press, 1992.
+
+
 ### The Syntax
 
 First, here's a list of valid terms, so you can get an idea:
